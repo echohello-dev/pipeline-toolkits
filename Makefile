@@ -12,8 +12,8 @@ ifndef NAME
 	$(error NAME is not set)
 endif
 	docker build \
-		-t ghcr.io/johnnyhuy/pipeline-toolkits/$(NAME):latest \
-		-t ghcr.io/johnnyhuy/pipeline-toolkits/$(NAME):$(VERSION) \
+		-t ghcr.io/echohello-dev/pipeline-toolkits/$(NAME):latest \
+		-t ghcr.io/echohello-dev/pipeline-toolkits/$(NAME):$(VERSION) \
 		containers/$(NAME)
 
 publish: login-github
@@ -22,7 +22,7 @@ ifndef NAME
 endif
 	docker build \
 		--platform $(PLATFORM) \
-		-t ghcr.io/johnnyhuy/pipeline-toolkits/$(NAME):latest \
-		-t ghcr.io/johnnyhuy/pipeline-toolkits/$(NAME):$(VERSION) \
+		-t ghcr.io/echohello-dev/pipeline-toolkits/$(NAME):latest \
+		-t ghcr.io/echohello-dev/pipeline-toolkits/$(NAME):$(VERSION) \
 		--push \
 		containers/$(NAME)

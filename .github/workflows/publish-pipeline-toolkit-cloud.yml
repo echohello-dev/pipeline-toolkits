@@ -11,6 +11,8 @@ on:
   schedule:
     - cron: "0 8 * * *" # Every day at 7:00 PM AEDT
 
+permissions:
+  packages: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,9 +21,6 @@ jobs:
   publish:
     name: ${{ matrix.platform }}
     runs-on: ubuntu-latest
-
-    permissions:
-      packages: write
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
