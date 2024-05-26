@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: pipeline-toolkit-cloud
+  title: Pipeline Toolkit - Cloud
+  description: |
+    A collection of tools for working with cloud services.
+spec:
+  type: service
+  lifecycle: production
+  owner: echohello-dev

@@ -1,0 +1,40 @@
+name: Publish Pipeline Toolkit - Cloud
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - containers/cloud/**/*
+
+  schedule:
+    - cron: "0 8 * * *" # Every day at 7:00 PM AEDT
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  publish:
+    name: ${{ matrix.platform }}
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PLATFORM: ${{ matrix.platform }}
+      NAME: cloud
+
+    strategy:
+      matrix:
+        platform:
+          - linux/amd64
+          # - linux/arm64
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: make publish
